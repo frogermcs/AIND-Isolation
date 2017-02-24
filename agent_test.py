@@ -214,7 +214,6 @@ class CounterBoard(isolation.Board):
 
 
 class Project1Test(unittest.TestCase):
-
     def initAUT(self, depth, eval_fn, iterative=False,
                 method="minimax", loc1=(3, 3), loc2=(0, 0), w=7, h=7):
         """Generate and initialize player and board objects to be used for
@@ -241,9 +240,10 @@ class Project1Test(unittest.TestCase):
         game.apply_move(p2_location)
 
         self.assertIsInstance(game_agent.custom_score(game, player1), float,
-            "The heuristic function should return a floating point")
+                              "The heuristic function should return a floating point")
 
     timeout(5)
+
     # @unittest.skip("Skip simple minimax test.")  # Uncomment this line to skip test
     def test_minimax_interface(self):
         """ Test CustomPlayer.minimax interface with simple input """
@@ -256,8 +256,7 @@ class Project1Test(unittest.TestCase):
         heuristic = lambda g, p: 0.  # return 0 everywhere
 
         # create a player agent & a game board
-        agentUT = game_agent.CustomPlayer(
-            test_depth, heuristic, iterative_search, search_method)
+        agentUT = game_agent.CustomPlayer(test_depth, heuristic, iterative_search, search_method)
         agentUT.time_left = lambda: 99  # ignore timeout for fixed-depth search
         board = isolation.Board(agentUT, 'null_agent', w, h)
 
@@ -275,6 +274,7 @@ class Project1Test(unittest.TestCase):
                              "branch being searched."))
 
     timeout(5)
+
     # @unittest.skip("Skip alphabeta test.")  # Uncomment this line to skip test
     def test_alphabeta_interface(self):
         """ Test CustomPlayer.alphabeta interface with simple input """
@@ -318,8 +318,7 @@ class Project1Test(unittest.TestCase):
         heuristic = lambda g, p: 0.  # return 0 everywhere
 
         # create a player agent & a game board
-        agentUT = game_agent.CustomPlayer(
-            test_depth, heuristic, iterative_search, search_method)
+        agentUT = game_agent.CustomPlayer(test_depth, heuristic, iterative_search, search_method)
 
         # Test that get_move returns a legal choice on an empty game board
         board = isolation.Board(agentUT, 'null_agent', w, h)
@@ -400,6 +399,8 @@ class Project1Test(unittest.TestCase):
         # the adversary has the last move before calling the heuristic
         # evaluation function.
         for idx in range(5):
+            print()
+            print("IDX", idx)
             test_depth = idx + 1
             agentUT, board = self.initAUT(test_depth, heuristic,
                                           iterative_search, method,
@@ -476,7 +477,6 @@ class Project1Test(unittest.TestCase):
             self.assertIn(move, first_branch, WRONG_MOVE.format(
                 method, test_depth, first_branch, move))
 
-
     @timeout(20)
     # @unittest.skip("Skip iterative deepening test.")  # Uncomment this line to skip test
     def test_get_move(self):
@@ -495,6 +495,7 @@ class Project1Test(unittest.TestCase):
             when an event occurs, regardless of the clock time required until
             the event happens.
             """
+
             def __init__(self, time_limit):
                 self.time_limit = time_limit
                 self.start_time = curr_time_millis()
@@ -514,7 +515,6 @@ class Project1Test(unittest.TestCase):
         exact_counts = [(8, 8), (32, 10), (160, 39), (603, 35), (1861, 54), (3912, 62)]
 
         for idx in range(len(origins)):
-
             # set the initial timer high enough that the search will not
             # timeout before triggering the dynamic timer to halt by visiting
             # the expected number of nodes
