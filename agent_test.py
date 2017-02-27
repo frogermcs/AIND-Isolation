@@ -399,8 +399,6 @@ class Project1Test(unittest.TestCase):
         # the adversary has the last move before calling the heuristic
         # evaluation function.
         for idx in range(5):
-            print()
-            print("IDX", idx)
             test_depth = idx + 1
             agentUT, board = self.initAUT(test_depth, heuristic,
                                           iterative_search, method,
